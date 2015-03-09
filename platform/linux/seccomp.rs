@@ -84,6 +84,7 @@ const NR_mmap: u32 = 9;
 const NR_mprotect: u32 = 10;
 const NR_munmap: u32 = 11;
 const NR_brk: u32 = 12;
+const NR_rt_sigprocmask: u32 = 14;
 const NR_rt_sigreturn: u32 = 15;
 const NR_ioctl: u32 = 16;
 const NR_access: u32 = 21;
@@ -133,7 +134,7 @@ static FILTER_EPILOGUE: [sock_filter; 1] = [
 ];
 
 /// Syscalls that are always allowed.
-pub static ALLOWED_SYSCALLS: [u32; 21] = [
+pub static ALLOWED_SYSCALLS: [u32; 22] = [
     NR_brk,
     NR_close,
     NR_exit,
@@ -148,6 +149,7 @@ pub static ALLOWED_SYSCALLS: [u32; 21] = [
     NR_read,
     NR_recvfrom,
     NR_recvmsg,
+    NR_rt_sigprocmask,
     NR_rt_sigreturn,
     NR_sched_getaffinity,
     NR_sendmmsg,

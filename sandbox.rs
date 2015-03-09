@@ -63,7 +63,10 @@ impl Command {
 
     /// Constructs a new `Command` for launching the current executable.
     pub fn me() -> IoResult<Command> {
-        Ok(Command::new(try!(env::current_exe())))
+        use std::ffi::AsOsStr;
+        use std::os::unix::OsStrExt;
+        let me = env::current_exe().unwrap();
+        Ok(Command::new(me.as_os_str().as_bytes()))
     }
 
     /// Adds an argument to pass to the program.

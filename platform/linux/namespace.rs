@@ -192,7 +192,7 @@ unsafe fn prepare_user_and_pid_namespaces(parent_uid: uid_t, parent_gid: gid_t) 
     assert!(unshare(CLONE_NEWUSER | CLONE_NEWPID) == 0);
 
     // See http://crbug.com/457362 for more information on this.
-    try!(try!(File::create(&Path::new("/proc/self/setgroups"))).write_all(b"deny"));
+    //try!(try!(File::create(&Path::new("/proc/self/setgroups"))).write_all(b"deny"));
 
     let gid_contents = format!("0 {} 1", parent_gid);
     try!(try!(File::create(&Path::new("/proc/self/gid_map"))).write_all(gid_contents.as_bytes()));
